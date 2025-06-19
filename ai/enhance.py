@@ -4,9 +4,9 @@ import sys
 
 import dotenv
 import argparse
-
+import time
 import langchain_core.exceptions
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import (
   ChatPromptTemplate,
   SystemMessagePromptTemplate,
@@ -26,8 +26,8 @@ def parse_args():
 
 def main():
     args = parse_args()
-    model_name = os.environ.get("MODEL_NAME", 'deepseek-chat')
-    language = os.environ.get("LANGUAGE", 'Chinese')
+    model_name = os.environ.get("MODEL_NAME", 'gemini-2.5-flash')
+    language = os.environ.get("LANGUAGE", 'English')
 
     data = []
     with open(args.data, "r") as f:
@@ -45,7 +45,7 @@ def main():
 
     print('Open:', args.data, file=sys.stderr)
 
-    llm = ChatOpenAI(model=model_name).with_structured_output(Structure, method="function_calling")
+    llm = ChatGoogleGenerativeAI(model=model_name).with_structured_output(Structure)
     print('Connect to:', model_name, file=sys.stderr)
     prompt_template = ChatPromptTemplate.from_messages([
         SystemMessagePromptTemplate.from_template(system),
@@ -74,6 +74,7 @@ def main():
             f.write(json.dumps(d) + "\n")
 
         print(f"Finished {idx+1}/{len(data)}", file=sys.stderr)
+        time.sleep(3)
 
 if __name__ == "__main__":
     main()
