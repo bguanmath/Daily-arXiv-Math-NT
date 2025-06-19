@@ -28,9 +28,6 @@ jobs:
 
         # 如果你使用 Google Gemini (如果你在 enhance.py 中用了 ChatGoogleGenerativeAI)
         export GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}
-        # 如果你使用 OpenAI 或 DeepSeek (兼容 OpenAI API)
-        # export OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
-        # export OPENAI_API_BASE=${{ secrets.OPENAI_API_BASE }}
         
         export LANGUAGE="${{ vars.LANGUAGE }}"
         export CATEGORIES="${{ vars.CATEGORIES }}"
