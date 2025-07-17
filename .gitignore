@@ -12,3 +12,9 @@ ai/.env
 test/*
 .idea/
 .cursorrules
+
+# MacOS specific files
+.DS_Store
+
+# Obsidian specific files
+data/.obsidian/
