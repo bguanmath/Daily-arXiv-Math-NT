@@ -8,6 +8,9 @@ on:
     - cron: "30 16 * * *"
   workflow_dispatch:
 
+env:
+  # 解决 Node.js 20 过期问题，强制使用 Node.js 24
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build:
